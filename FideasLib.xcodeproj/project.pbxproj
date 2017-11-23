@@ -7,13 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6583689DBC407F405251370D /* Pods_FideasLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8A77EF56A48CBBDDA0732B /* Pods_FideasLib.framework */; };
+		9816B3E81FBF0BDE004DB520 /* RegisterOperationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9816B3E71FBF0BDE004DB520 /* RegisterOperationResult.swift */; };
+		9816B3EA1FBF0D4B004DB520 /* CustomerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9816B3E91FBF0D4B004DB520 /* CustomerProfile.swift */; };
+		983311C11FC3568F001D886E /* UpdateOperationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983311C01FC3568F001D886E /* UpdateOperationResult.swift */; };
+		983311C31FC35CB6001D886E /* KKBRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983311C21FC35CB6001D886E /* KKBRequestResponse.swift */; };
 		98E36E461F85770C00370443 /* FideasLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 98E36E441F85770C00370443 /* FideasLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98E36E4D1F8577C800370443 /* FideaConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E36E4C1F8577C800370443 /* FideaConnector.swift */; };
+		98E36E4F1F8578A400370443 /* AuthenticationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E36E4E1F8578A400370443 /* AuthenticationResult.swift */; };
+		98E36E511F8578BC00370443 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E36E501F8578BC00370443 /* Enums.swift */; };
+		98E36E531F857EC400370443 /* KKBResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E36E521F857EC400370443 /* KKBResponse.swift */; };
+		98E36E551F857F7100370443 /* ReportResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E36E541F857F7100370443 /* ReportResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		526B97EC86AC702C1D10398F /* Pods-FideasLib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FideasLib.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FideasLib/Pods-FideasLib.debug.xcconfig"; sourceTree = "<group>"; };
+		5B8A77EF56A48CBBDDA0732B /* Pods_FideasLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FideasLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9816B3E71FBF0BDE004DB520 /* RegisterOperationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterOperationResult.swift; sourceTree = "<group>"; };
+		9816B3E91FBF0D4B004DB520 /* CustomerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerProfile.swift; sourceTree = "<group>"; };
+		983311C01FC3568F001D886E /* UpdateOperationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateOperationResult.swift; sourceTree = "<group>"; };
+		983311C21FC35CB6001D886E /* KKBRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KKBRequestResponse.swift; sourceTree = "<group>"; };
 		98E36E411F85770C00370443 /* FideasLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FideasLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98E36E441F85770C00370443 /* FideasLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FideasLib.h; sourceTree = "<group>"; };
 		98E36E451F85770C00370443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98E36E4C1F8577C800370443 /* FideaConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FideaConnector.swift; sourceTree = "<group>"; };
+		98E36E4E1F8578A400370443 /* AuthenticationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResult.swift; sourceTree = "<group>"; };
+		98E36E501F8578BC00370443 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		98E36E521F857EC400370443 /* KKBResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KKBResponse.swift; sourceTree = "<group>"; };
+		98E36E541F857F7100370443 /* ReportResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportResult.swift; sourceTree = "<group>"; };
+		9BA50E77E390932FCA54F5B4 /* Pods-FideasLib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FideasLib.release.xcconfig"; path = "Pods/Target Support Files/Pods-FideasLib/Pods-FideasLib.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -21,17 +43,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6583689DBC407F405251370D /* Pods_FideasLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F986CF10ED88577BB73E5C8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				526B97EC86AC702C1D10398F /* Pods-FideasLib.debug.xcconfig */,
+				9BA50E77E390932FCA54F5B4 /* Pods-FideasLib.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		98E36E371F85770C00370443 = {
 			isa = PBXGroup;
 			children = (
 				98E36E431F85770C00370443 /* FideasLib */,
 				98E36E421F85770C00370443 /* Products */,
+				1F986CF10ED88577BB73E5C8 /* Pods */,
+				9C5E964EC47C07A24B10544D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -48,8 +82,25 @@
 			children = (
 				98E36E441F85770C00370443 /* FideasLib.h */,
 				98E36E451F85770C00370443 /* Info.plist */,
+				98E36E4C1F8577C800370443 /* FideaConnector.swift */,
+				98E36E4E1F8578A400370443 /* AuthenticationResult.swift */,
+				98E36E501F8578BC00370443 /* Enums.swift */,
+				98E36E521F857EC400370443 /* KKBResponse.swift */,
+				98E36E541F857F7100370443 /* ReportResult.swift */,
+				9816B3E71FBF0BDE004DB520 /* RegisterOperationResult.swift */,
+				9816B3E91FBF0D4B004DB520 /* CustomerProfile.swift */,
+				983311C01FC3568F001D886E /* UpdateOperationResult.swift */,
+				983311C21FC35CB6001D886E /* KKBRequestResponse.swift */,
 			);
 			path = FideasLib;
+			sourceTree = "<group>";
+		};
+		9C5E964EC47C07A24B10544D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B8A77EF56A48CBBDDA0732B /* Pods_FideasLib.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -70,10 +121,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 98E36E491F85770C00370443 /* Build configuration list for PBXNativeTarget "FideasLib" */;
 			buildPhases = (
+				56CD433375A100B3432152A2 /* [CP] Check Pods Manifest.lock */,
 				98E36E3C1F85770C00370443 /* Sources */,
 				98E36E3D1F85770C00370443 /* Frameworks */,
 				98E36E3E1F85770C00370443 /* Headers */,
 				98E36E3F1F85770C00370443 /* Resources */,
+				2D49F00677B462392E44F611 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -95,6 +148,7 @@
 				TargetAttributes = {
 					98E36E401F85770C00370443 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -126,11 +180,56 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2D49F00677B462392E44F611 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FideasLib/Pods-FideasLib-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56CD433375A100B3432152A2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FideasLib-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		98E36E3C1F85770C00370443 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9816B3EA1FBF0D4B004DB520 /* CustomerProfile.swift in Sources */,
+				983311C11FC3568F001D886E /* UpdateOperationResult.swift in Sources */,
+				983311C31FC35CB6001D886E /* KKBRequestResponse.swift in Sources */,
+				98E36E551F857F7100370443 /* ReportResult.swift in Sources */,
+				98E36E4F1F8578A400370443 /* AuthenticationResult.swift in Sources */,
+				98E36E511F8578BC00370443 /* Enums.swift in Sources */,
+				98E36E4D1F8577C800370443 /* FideaConnector.swift in Sources */,
+				98E36E531F857EC400370443 /* KKBResponse.swift in Sources */,
+				9816B3E81FBF0BDE004DB520 /* RegisterOperationResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,10 +351,14 @@
 		};
 		98E36E4A1F85770C00370443 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 526B97EC86AC702C1D10398F /* Pods-FideasLib.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 799TBCGXRD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -265,6 +368,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.salyangoz.FideasLib;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -272,10 +376,13 @@
 		};
 		98E36E4B1F85770C00370443 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9BA50E77E390932FCA54F5B4 /* Pods-FideasLib.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 799TBCGXRD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
