@@ -1,3 +1,6 @@
 ![CocoaPods](https://img.shields.io/cocoapods/v/FideasLib.svg)
 
-#FIDEAS SDK
+# FIDEAS SDK
+# Installing
+##  Cocoa Pods
+
