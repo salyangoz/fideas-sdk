@@ -11,4 +11,13 @@ target 'MyApp' do
     pod 'FideasLib'
 end
 ```
+#
+# Usage
+
+#### Initialization
+
+```swift
+import FideasLib
+```
+
 
