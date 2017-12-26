@@ -8,14 +8,14 @@
 
 import UIKit
 
-public class KKBRequestResponse: NSObject {
+public class KKBRequestResponse {
 
-    var RequestID = Int()
-    var ErrorCode = Int()
-    var ErrorMessage = String()
-    var RequestResult = Int()
+    public init()
+    {}
+    public var RequestID = Int()
+    public var ErrorCode = Int()
+    public var ErrorMessage = String()
+    public var RequestResult = Int()
     
-    public override init() {
-        
-    }
+    
 }

@@ -8,14 +8,11 @@
 
 import UIKit
 
-public class AuthenticationResult: NSObject {
-    var Result : AuthenticationResultTypes?
-    var OperationResult = Int()
-    var AccessToken : String?
-    var Profile : CustomerProfile?
+public class AuthenticationResult {
+    public var Result : AuthenticationResultTypes?
+    public var OperationResult = Int()
+    public var AccessToken : String?
+    public var Profile : CustomerProfile?
     
-    override init() {
-        super.init()
-        
-    }
+    
 }

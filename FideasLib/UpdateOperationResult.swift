@@ -8,12 +8,10 @@
 
 import UIKit
 
-public class UpdateOperationResult: NSObject {
+public class UpdateOperationResult {
     
-    var Result = Int()
-    var Message = String()
+    public var Result = Int()
+    public var Message = String()
     
-    override init() {
-        
-    }
+
 }
