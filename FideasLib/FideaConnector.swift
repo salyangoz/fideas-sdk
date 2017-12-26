@@ -9,11 +9,18 @@
 import UIKit
 import Alamofire
 import SWXMLHash
+
 public class FideaConnector: NSObject {
-    public override init() {
-        
-    }
     
+    //http://37.131.253.21/Mobile/DataviewService.asmx?wsdl=
+    var ServiceUrl = String()
+    public override init() {
+        ServiceUrl = "http://37.131.253.21/Mobile/DataviewService.asmx?wsdl="
+    }
+    public init(Url:String)
+    {
+        ServiceUrl = Url
+    }
     public func Authenticate(ClientID:String,ClientSecret:String)->AuthenticationResult{
         let retval = AuthenticationResult()
         //Alamofire.request("", method: "POST", parameters: "", encoding: "", headers: ")
@@ -28,33 +35,29 @@ public class FideaConnector: NSObject {
                          RetailerID:String,
                          DeviceID:String)->RegisterOperationResult{
         
-        let url = NSURL(string:"http://37.131.253.21/Mobile/DataviewService.asmx?wsdl=" as String)
+        
+        let requestParams:Dictionary<String,Any?> = [
+            "IdentityNumber": IdentityNumber,
+            "FirstName" : Name,
+            "Surname" : Surname,
+            "DateOfBirth" : DateOfBirth,
+            "MobileNumber" : PhoneNumber,
+            "EmailAddress" : Email,
+            "DeviceID" : DeviceID,
+            "RetailerId" : RetailerID,
+            "SequanceID" : "1",
+            "AccessToken" : "token"
+        ]
+        
+        let xmlEngine = XmlCreatorEngine()
+        let xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+        
+        let url = NSURL(string:ServiceUrl)
         var req = URLRequest(url: url! as URL)
         req.httpMethod = "POST"
         req.setValue("text/xml", forHTTPHeaderField: "Content-Type")
         
-        let xmlValue = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dvt=\"http://dvtransaction.com/\">"
-            + "<soapenv:Header/>"
-            + "<soapenv:Body>"
-            + "<dvt:ProcessApplicationXML>"
-            + "<dvt:XmlRequest>"
-            + "<Request>"
-            + "<IdentityNumber>\(IdentityNumber)</IdentityNumber>"
-            + "<FirstName>\(Name)</FirstName>"
-            + "<Surname>\(Surname)</Surname>"
-            + "<DateOfBirth>\(DateOfBirth)</DateOfBirth>"
-            + "<MobileNumber>\(PhoneNumber)</MobileNumber>"
-            + "<EmailAddress>\(Email)</EmailAddress>"
-            + "<DeviceID>\(DeviceID)</DeviceID>"
-            + "<RetailerId>\(RetailerID)</RetailerId>"
-            + "<SequenceID>1</SequenceID>"
-            + "<AccessToken>aaaaaaaab</AccessToken>"
-            + "</Request>"
-            + "</dvt:XmlRequest>"
-            + "</dvt:ProcessApplicationXML>"
-            + "</soapenv:Body>"
-            + "</soapenv:Envelope>"
-        req.httpBody = xmlValue.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+        req.httpBody = xmlContent.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
         let opresult = RegisterOperationResult()
         Alamofire.request(req as URLRequestConvertible)
             .response{ r in
@@ -89,28 +92,25 @@ public class FideaConnector: NSObject {
     public func Login(Identity:String,MobileNumber:String,DeviceID:String,RetailerID:String)->AuthenticationResult{
         
         let authResult = AuthenticationResult()
-        let xmlBody = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dvt=\"http://dvtransaction.com/\">"
-        + "<soapenv:Header/>"
-        + "<soapenv:Body>"
-        + "<dvt:ProcessApplicationXML>"
-        + "<dvt:XmlRequest>"
-        + "<Request>"
-            + (Identity == "" ? "": "<IdentityNumber>\(Identity)</IdentityNumber>")
-        + (MobileNumber == "" ? "" : "<MobileNumber>\(MobileNumber)</MobileNumber>")
-        + "<DeviceID>\(DeviceID)</DeviceID>"
-        + "<RetailerId>\(RetailerID)</RetailerId>"
-        + "<SequenceID>2</SequenceID>"
-        + "</Request>"
-        + "</dvt:XmlRequest>"
-        + "</dvt:ProcessApplicationXML>"
-        + "</soapenv:Body>"
-        + "</soapenv:Envelope>"
         
-        let url = NSURL(string:"http://37.131.253.21/Mobile/DataviewService.asmx?wsdl=" as String)
+        let requestParams:Dictionary<String,Any?> = [
+            "IdentityNumber": Identity,
+            "MobileNumber" : MobileNumber,
+            "DeviceID" : DeviceID,
+            "RetailerId" : RetailerID,
+            "SequanceID" : "2",
+            "AccessToken" : "token"
+        ]
+        
+        let xmlEngine = XmlCreatorEngine()
+        let xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+
+        
+        let url = NSURL(string:ServiceUrl)
         var req = URLRequest(url: url! as URL)
         req.httpMethod = "POST"
         req.setValue("text/xml", forHTTPHeaderField: "Content-Type")
-        req.httpBody = xmlBody.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+        req.httpBody = xmlContent.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
         
         Alamofire.request(req as URLRequestConvertible)
             .response{ r in
@@ -120,7 +120,7 @@ public class FideaConnector: NSObject {
                 {
                     let response = xml["soap:Envelope"]["soap:Body"]["ProcessApplicationXMLResponse"]["ProcessApplicationXMLResult"]["Response"]
                     let responseCode = response["ResponseCode"].element?.text
-                    let responseMessage = response["ResponseDescription"].element?.text
+                    //let responseMessage = response["ResponseDescription"].element?.text
                     if(responseCode == "200")
                     {
                         let decision = response["DecisionEngine"]
@@ -174,32 +174,28 @@ public class FideaConnector: NSObject {
         
         //Check the request
         //If the deviceId same but the cellPhone or identityNumber is different we should block the request
-        let xmlBody = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dvt=\"http://dvtransaction.com/\">"
-            + "<soapenv:Header/>"
-            + "<soapenv:Body>"
-            + "<dvt:ProcessApplicationXML>"
-            + "<dvt:XmlRequest>"
-            + "<Request>"
-            + "<IdentityNumber>\(IdentityNumber)</IdentityNumber>"
-            + "<FirstName>\(FirstName)</FirstName>"
-            + "<Surname>\(LastName)</Surname>"
-            + "<DateOfBirth>\(DateOfBirth)</DateOfBirth>"
-            + "<MobileNumber>\(MobileNumber)</MobileNumber>"
-             + "<EmailAddress>\(Email)</EmailAddress>"
-            + "<DeviceID>\(DeviceID)</DeviceID>"
-            + "<RetailerId>\(RetailerID)</RetailerId>"
-            + "<SequenceID>2</SequenceID>"
-            + "</Request>"
-            + "</dvt:XmlRequest>"
-            + "</dvt:ProcessApplicationXML>"
-            + "</soapenv:Body>"
-            + "</soapenv:Envelope>"
+        let requestParams:Dictionary<String,Any?> = [
+            "IdentityNumber": IdentityNumber,
+            "FirstName" : FirstName,
+            "Surname" : LastName,
+            "DateOfBirth" : DateOfBirth,
+            "MobileNumber" : MobileNumber,
+            "EmailAddress" : Email,
+            "DeviceID" : DeviceID,
+            "RetailerId" : RetailerID,
+            "SequanceID" : "4",
+            "AccessToken" : "token",
+            "Flags":  ["LoginFlag" : "Y" ]
+        ]
         
-        let url = NSURL(string:"http://37.131.253.21/Mobile/DataviewService.asmx?wsdl=" as String)
+        let xmlEngine = XmlCreatorEngine()
+        let xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+        
+        let url = NSURL(string:ServiceUrl)
         var req = URLRequest(url: url! as URL)
         req.httpMethod = "POST"
         req.setValue("text/xml", forHTTPHeaderField: "Content-Type")
-        req.httpBody = xmlBody.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+        req.httpBody = xmlContent.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
         
         
         let retval = KKBRequestResponse()
@@ -229,21 +225,91 @@ public class FideaConnector: NSObject {
         return retval;
     }
     
-    public func CheckKKBResponse(PhoneNumber:String,
-                                 IdentityNumber:String,
-                                 MerchantID:String,
-                                 DeviceID:String)->KKBResponse{
+    public func CheckKKBResponse(IdentityNumber:String,
+                                 DateOfBirth:String,
+                                 Pin:String,
+                                 RequestID:String
+                                 )->KKBResponse{
         let response = KKBResponse()
+        
+        let requestParams:Dictionary<String,Any?> = [
+            "IdentityNumber": IdentityNumber,
+            "DateOfBirth" : DateOfBirth,
+            "Pin" : Pin,
+            "KKBTalepId" : RequestID,
+            "SequanceID" : "5"
+            
+        ]
+        
+        let xmlEngine = XmlCreatorEngine()
+        let xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+        
+        let url = NSURL(string:ServiceUrl)
+        var req = URLRequest(url: url! as URL)
+        req.httpMethod = "POST"
+        req.setValue("text/xml", forHTTPHeaderField: "Content-Type")
+        req.httpBody = xmlContent.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+        
+        
+        Alamofire.request(req as URLRequestConvertible)
+            .response{ r in
+                let xml = SWXMLHash.parse(r.data!)
+                let responseCode = r.response?.statusCode
+                if(responseCode == 200)
+                {
+                    let resp = xml["soap:Envelope"]["soap:Body"]["ProcessApplicationXMLResponse"]["ProcessApplicationXMLResult"]["Response"]
+                    response.Decision = (resp["DECISION"].element?.text)!
+                    
+                }
+                else
+                {
+                    
+                }
+        }
         
         return response;
     }
     
-    public func Report(DateOfBirth:Date,
-                       PINNumber:String,
-                       KKBRequestID:String,
-                       DeviceID:String)->ReportResult{
+    public func Report(IdentityNumber:String,
+                       DateOfBirth:String,
+                       RequestID:String
+                       )->ReportResult{
         
         let result = ReportResult()
+        
+        
+        let requestParams:Dictionary<String,Any?> = [
+            "IdentityNumber": IdentityNumber,
+            "DateOfBirth" : DateOfBirth,
+            "KKBTalepId" : RequestID,
+            "SequanceID" : "6"
+        ]
+        
+        let xmlEngine = XmlCreatorEngine()
+        let xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+        
+        let url = NSURL(string:ServiceUrl)
+        var req = URLRequest(url: url! as URL)
+        req.httpMethod = "POST"
+        req.setValue("text/xml", forHTTPHeaderField: "Content-Type")
+        req.httpBody = xmlContent.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+        
+        
+        Alamofire.request(req as URLRequestConvertible)
+            .response{ r in
+                let xml = SWXMLHash.parse(r.data!)
+                let responseCode = r.response?.statusCode
+                if(responseCode == 200)
+                {
+                    let r = xml["soap:Envelope"]["soap:Body"]["ProcessApplicationXMLResponse"]["ProcessApplicationXMLResult"]["Response"]
+                    result.Result = (r["RESULT"].element?.text)!
+                    
+                }
+                else
+                {
+                    
+                }
+        }
         
         return result;
     }
@@ -258,32 +324,29 @@ public class FideaConnector: NSObject {
                               RetailerID:String
                               )-> UpdateOperationResult {
         
-        let xmlBody = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dvt=\"http://dvtransaction.com/\">"
-            + "<soapenv:Header/>"
-            + "<soapenv:Body>"
-            + "<dvt:ProcessApplicationXML>"
-            + "<dvt:XmlRequest>"
-            + "<Request>"
-            + "<IdentityNumber>\(IdentityNumber)</IdentityNumber>"
-            + "<FirstName>\(FirstName)</FirstName>"
-            + "<Surname>\(LastName)</Surname>"
-            + "<DateOfBirth>\(DateOfBirth)</DateOfBirth>"
-            + "<MobileNumber>\(MobileNumber)</MobileNumber>"
-            + "<EmailAddress>\(EmailAddress)</EmailAddress>"
-            + "<DeviceID>\(DeviceID)</DeviceID>"
-            + "<RetailerId>\(RetailerID)</RetailerId>"
-            + "<SequenceID>3</SequenceID>"
-            + "</Request>"
-            + "</dvt:XmlRequest>"
-            + "</dvt:ProcessApplicationXML>"
-            + "</soapenv:Body>"
-            + "</soapenv:Envelope>"
         
-        let url = NSURL(string:"http://37.131.253.21/Mobile/DataviewService.asmx?wsdl=" as String)
+        let requestParams:Dictionary<String,Any?> = [
+            "IdentityNumber": IdentityNumber,
+            "FirstName" : FirstName,
+            "Surname" : LastName,
+            "DateOfBirth" : DateOfBirth,
+            "MobileNumber" : MobileNumber,
+            "EmailAddress" : EmailAddress,
+            "DeviceID" : DeviceID,
+            "RetailerId" : RetailerID,
+            "SequanceID" : "3",
+            "AccessToken" : "token"
+        ]
+        
+        let xmlEngine = XmlCreatorEngine()
+        let xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+        
+        
+        let url = NSURL(string:ServiceUrl)
         var req = URLRequest(url: url! as URL)
         req.httpMethod = "POST"
         req.setValue("text/xml", forHTTPHeaderField: "Content-Type")
-        req.httpBody = xmlBody.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+        req.httpBody = xmlContent.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
         
         let result = UpdateOperationResult()
         
