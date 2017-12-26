@@ -9,5 +9,5 @@ target 'FideasLib' do
   pod 'Alamofire'
   pod 'AlamofireSwiftyJSON'
   pod 'SWXMLHash', '~> 4.0.0'
-  pod 'SOAPEngine'
+
 end
