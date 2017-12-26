@@ -8,17 +8,18 @@
 
 import UIKit
 
-public class KKBResponse: NSObject {
+public class KKBResponse {
 
-    var Decision = String()
-    var ApplicationScore = Int()
-    var ReasonCode = String()
-    var ReasonDescription = String()
-    var AdverseActionCode1 = String()
-    var AdverseActionDesc1 = String()
-    var CreditLimit = Decimal()
-    
-    public override init() {
-    
+    init() {
+        
     }
+    public var Decision = String()
+    public var ApplicationScore = Int()
+    public var ReasonCode = String()
+    public var ReasonDescription = String()
+    public var AdverseActionCode1 = String()
+    public var AdverseActionDesc1 = String()
+    public var CreditLimit = Decimal()
+    
+ 
 }

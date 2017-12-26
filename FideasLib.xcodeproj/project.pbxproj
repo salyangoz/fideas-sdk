@@ -12,6 +12,7 @@
 		9816B3EA1FBF0D4B004DB520 /* CustomerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9816B3E91FBF0D4B004DB520 /* CustomerProfile.swift */; };
 		983311C11FC3568F001D886E /* UpdateOperationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983311C01FC3568F001D886E /* UpdateOperationResult.swift */; };
 		983311C31FC35CB6001D886E /* KKBRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983311C21FC35CB6001D886E /* KKBRequestResponse.swift */; };
+		98679B901FEBC57D001C47A4 /* XmlCreatorEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98679B8F1FEBC57D001C47A4 /* XmlCreatorEngine.swift */; };
 		98E36E461F85770C00370443 /* FideasLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 98E36E441F85770C00370443 /* FideasLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98E36E4D1F8577C800370443 /* FideaConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E36E4C1F8577C800370443 /* FideaConnector.swift */; };
 		98E36E4F1F8578A400370443 /* AuthenticationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E36E4E1F8578A400370443 /* AuthenticationResult.swift */; };
@@ -27,6 +28,8 @@
 		9816B3E91FBF0D4B004DB520 /* CustomerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerProfile.swift; sourceTree = "<group>"; };
 		983311C01FC3568F001D886E /* UpdateOperationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateOperationResult.swift; sourceTree = "<group>"; };
 		983311C21FC35CB6001D886E /* KKBRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KKBRequestResponse.swift; sourceTree = "<group>"; };
+		98679B8F1FEBC57D001C47A4 /* XmlCreatorEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmlCreatorEngine.swift; sourceTree = "<group>"; };
+		988E22E41FE3E1B400213158 /* FideasLib-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FideasLib-Bridging-Header.h"; sourceTree = "<group>"; };
 		98E36E411F85770C00370443 /* FideasLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FideasLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98E36E441F85770C00370443 /* FideasLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FideasLib.h; sourceTree = "<group>"; };
 		98E36E451F85770C00370443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,6 +65,7 @@
 		98E36E371F85770C00370443 = {
 			isa = PBXGroup;
 			children = (
+				988E22E41FE3E1B400213158 /* FideasLib-Bridging-Header.h */,
 				98E36E431F85770C00370443 /* FideasLib */,
 				98E36E421F85770C00370443 /* Products */,
 				1F986CF10ED88577BB73E5C8 /* Pods */,
@@ -80,6 +84,7 @@
 		98E36E431F85770C00370443 /* FideasLib */ = {
 			isa = PBXGroup;
 			children = (
+				98679B8F1FEBC57D001C47A4 /* XmlCreatorEngine.swift */,
 				98E36E441F85770C00370443 /* FideasLib.h */,
 				98E36E451F85770C00370443 /* Info.plist */,
 				98E36E4C1F8577C800370443 /* FideaConnector.swift */,
@@ -143,7 +148,7 @@
 		98E36E381F85770C00370443 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Salyangoz;
 				TargetAttributes = {
 					98E36E401F85770C00370443 = {
@@ -229,6 +234,7 @@
 				98E36E511F8578BC00370443 /* Enums.swift in Sources */,
 				98E36E4D1F8577C800370443 /* FideaConnector.swift in Sources */,
 				98E36E531F857EC400370443 /* KKBResponse.swift in Sources */,
+				98679B901FEBC57D001C47A4 /* XmlCreatorEngine.swift in Sources */,
 				9816B3E81FBF0BDE004DB520 /* RegisterOperationResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +296,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -342,6 +349,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -355,7 +363,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 799TBCGXRD;
@@ -365,6 +373,7 @@
 				INFOPLIST_FILE = FideasLib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salyangoz.FideasLib;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -389,6 +398,7 @@
 				INFOPLIST_FILE = FideasLib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salyangoz.FideasLib;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

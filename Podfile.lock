@@ -1,0 +1,25 @@
+PODS:
+  - Alamofire (4.5.1)
+  - AlamofireSwiftyJSON (1.0.0):
+    - Alamofire (~> 4.0)
+    - SwiftyJSON (~> 3.0)
+  - SOAPEngine (1.40.5)
+  - SwiftyJSON (3.1.4)
+  - SWXMLHash (4.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlamofireSwiftyJSON
+  - SOAPEngine
+  - SWXMLHash (~> 4.0.0)
+
+SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  AlamofireSwiftyJSON: 78908b766483a28aa5cc90fd191a687467042973
+  SOAPEngine: 2270f08a94fe2ee5f89922b5232f68f4d4a7ee03
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  SWXMLHash: 6bbc0bf72975a18ceda469fb7d6a886a26d81694
+
+PODFILE CHECKSUM: c8c8fb0949363051c35194dcf02c6b9db240efe5
+
+COCOAPODS: 1.4.0.beta.2

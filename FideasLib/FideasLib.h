@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SOAPEngine64/SOAPEngine.h>
+
 
 //! Project version number for FideasLib.
 FOUNDATION_EXPORT double FideasLibVersionNumber;

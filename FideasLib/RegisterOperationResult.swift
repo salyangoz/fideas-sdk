@@ -8,12 +8,10 @@
 
 import UIKit
 
-public class RegisterOperationResult: NSObject {
-    override public init() {
-        
-    }
-    var ServiceStatus = Int()
-    var OperationStatus = Int()
-    var ResultDescription = String()
+public class RegisterOperationResult {
+
+    public var ServiceStatus = Int()
+    public var OperationStatus = Int()
+    public var ResultDescription = String()
 }
 

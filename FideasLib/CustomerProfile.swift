@@ -8,20 +8,20 @@
 
 import UIKit
 
-class CustomerProfile: NSObject {
+public class CustomerProfile: NSObject {
     
-    var MembershipDate = Date()
-    var DateOfBirth = Date()
-    var MobileNumber = String()
-    var IdentityNumber = String()
-    var Age = Int()
-    var AddressLine1 = String()
-    var AddressLine2 = String()
-    var PostalCode = String()
+    public var MembershipDate = Date()
+    public var DateOfBirth = Date()
+    public var MobileNumber = String()
+    public var IdentityNumber = String()
+    public var Age = Int()
+    public var AddressLine1 = String()
+    public var AddressLine2 = String()
+    public var PostalCode = String()
     
-    var ID = Int()
+    public var ID = Int()
     
-    var KKBResult : KKBResponse?
+    public var KKBResult : KKBResponse?
     
     
     override init() {

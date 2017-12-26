@@ -8,9 +8,9 @@
 
 import UIKit
 
-public class ReportResult: NSObject {
-    public override init() {
+public class ReportResult {
+    init() {
         
     }
-    
+    public var Result = String()
 }
