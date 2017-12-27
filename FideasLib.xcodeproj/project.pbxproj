@@ -28,6 +28,7 @@
 		983311C01FC3568F001D886E /* UpdateOperationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateOperationResult.swift; sourceTree = "<group>"; };
 		983311C21FC35CB6001D886E /* KKBRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KKBRequestResponse.swift; sourceTree = "<group>"; };
 		98679B8F1FEBC57D001C47A4 /* XmlCreatorEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmlCreatorEngine.swift; sourceTree = "<group>"; };
+		98679B931FF3BE1F001C47A4 /* FideasLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FideasLib.h; sourceTree = "<group>"; };
 		98E36E411F85770C00370443 /* FideasLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FideasLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98E36E451F85770C00370443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98E36E4C1F8577C800370443 /* FideaConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FideaConnector.swift; sourceTree = "<group>"; };
@@ -91,6 +92,7 @@
 				9816B3E91FBF0D4B004DB520 /* CustomerProfile.swift */,
 				983311C01FC3568F001D886E /* UpdateOperationResult.swift */,
 				983311C21FC35CB6001D886E /* KKBRequestResponse.swift */,
+				98679B931FF3BE1F001C47A4 /* FideasLib.h */,
 			);
 			path = FideasLib;
 			sourceTree = "<group>";
