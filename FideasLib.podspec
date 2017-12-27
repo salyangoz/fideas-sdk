@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FideasLib'
-  s.version          = '0.1.1'
+  s.version          = '0.2.0'
   s.summary          = 'Fideas Mobile Application Development SDK'
  
   s.description      = <<-DESC
@@ -9,7 +9,7 @@ Bu SDK ile mobil uygulamanin Fideas uzerinden
                        DESC
  
   s.homepage         = 'https://github.com/salyangoz/fideas-sdk'
-  s.license          = { :type => 'MIT', :file => '/Users/serhatyalcin/Documents/IOS Development/Salyangoz/FideasLib/LICENSE.txt' }
+  s.license          = { :type => 'MIT', :file => '/Users/serhatyalcin/Documents/IOS Development/Salyangoz/FideasLib/LICENSE.md' }
   s.author           = { 'Salyangoz' => 'info@salyangoz.com.tr' }
   s.source           = { :git => 'https://github.com/salyangoz/fideas-sdk.git', :branch => "master", :tag => s.version.to_s }
   s.dependency 'Alamofire'
