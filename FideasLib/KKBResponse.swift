@@ -13,13 +13,9 @@ public class KKBResponse {
     init() {
         
     }
-    public var Decision = String()
-    public var ApplicationScore = Int()
-    public var ReasonCode = String()
-    public var ReasonDescription = String()
-    public var AdverseActionCode1 = String()
-    public var AdverseActionDesc1 = String()
-    public var CreditLimit = Decimal()
-    
+    public var IsSuccess = Bool()
+    public var ProcessResult = String()
+    public var ErrorCode = String()
+    public var ErrorMessage = String()
  
 }

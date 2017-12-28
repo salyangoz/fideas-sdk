@@ -112,18 +112,19 @@ public class FideaConnector: NSObject {
         req.setValue("text/xml", forHTTPHeaderField: "Content-Type")
         req.httpBody = xmlContent.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
         
+        authResult.Result = AuthenticationResultTypes.Error
+        
         Alamofire.request(req as URLRequestConvertible)
             .response{ r in
                 let xml = SWXMLHash.parse(r.data!)
-                let responseCode = r.response?.statusCode
-                if(responseCode == 200)
+                let responseStatusCode = r.response?.statusCode
+                if(responseStatusCode == 200)
                 {
                     let response = xml["soap:Envelope"]["soap:Body"]["ProcessApplicationXMLResponse"]["ProcessApplicationXMLResult"]["Response"]
                     let responseCode = response["ResponseCode"].element?.text
-                    //let responseMessage = response["ResponseDescription"].element?.text
-                    if(responseCode == "200")
-                    {
-                        let decision = response["DecisionEngine"]
+                    let responseMessage = response["ResponseDescription"].element?.text
+                    if(responseCode == "200"){
+                        //let decision = response["DecisionEngine"]
                         
                         let customer = CustomerProfile()
                         let dateFormatter = DateFormatter()
@@ -134,40 +135,35 @@ public class FideaConnector: NSObject {
                         
                         customer.MembershipDate = dateFormatter.date(from: response["MembershipDate"].element!.text)!
                         customer.DateOfBirth = dateFormatter.date(from: response["DateOfBirth"].element!.text)!
-                        if(decision.children.count>0)
-                        {
-                            customer.KKBResult = KKBResponse()
-                            customer.KKBResult?.Decision = decision["Decision"].element!.text
-                            customer.KKBResult?.ReasonCode = decision["ReasonCode"].element!.text
-                            customer.KKBResult?.ApplicationScore = Int(decision["ApplicationScore"].element!.text)!
-                            customer.KKBResult?.ReasonDescription = decision["ReasonDescription"].element!.text
-                            customer.KKBResult?.AdverseActionCode1 = decision["AdverseActionCode1"].element!.text
-                            customer.KKBResult?.AdverseActionDesc1 = decision["AdverseActionDesc1"].element!.text
-                        }
                         
                         
+                        authResult.Result = AuthenticationResultTypes.Success
+                        authResult.Profile = customer
                     }
-                    else
+                    else if (responseCode == "401")
                     {
-                        
+                        authResult.Result = AuthenticationResultTypes.Failed
+                        authResult.Profile = nil
+                        authResult.ResponseMessage = responseMessage!
                     }
                 }
                 else
                 {
-                    authResult.OperationResult = responseCode!
+                    authResult.OperationResult = responseStatusCode!
+                    
                     
                 }
-        }
         
+            }
         return authResult
     }
     
-    public func RequestKKB(PhoneNumber:String,
+    
+    public func RequestKKB(MobileNumber:String,
                            IdentityNumber:String,
                            FirstName:String,
                            LastName:String,
                            DateOfBirth:String,
-                           MobileNumber:String,
                            Email:String,
                            RetailerID:String,
                            DeviceID:String)-> KKBRequestResponse {
@@ -250,7 +246,7 @@ public class FideaConnector: NSObject {
         req.setValue("text/xml", forHTTPHeaderField: "Content-Type")
         req.httpBody = xmlContent.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
         
-        
+        response.IsSuccess = false
         Alamofire.request(req as URLRequestConvertible)
             .response{ r in
                 let xml = SWXMLHash.parse(r.data!)
@@ -258,12 +254,21 @@ public class FideaConnector: NSObject {
                 if(responseCode == 200)
                 {
                     let resp = xml["soap:Envelope"]["soap:Body"]["ProcessApplicationXMLResponse"]["ProcessApplicationXMLResult"]["Response"]
-                    response.Decision = (resp["DECISION"].element?.text)!
-                    
+                    let kkb = resp["KKB"]
+                    if(kkb["talepOnayPin"].children.count>0)
+                    {
+                        if(kkb["talepOnayPin"]["return"].children.count>0)
+                        {
+                            response.ErrorCode = kkb["talepOnayPin"]["return"]["hataKod"].element!.text
+                            response.ErrorMessage = kkb["talepOnayPin"]["return"]["hataMesaji"].element!.text
+                            response.ProcessResult = kkb["talepOnayPin"]["return"]["islemSonucu"].element!.text
+                        }
+                    }
+                    response.IsSuccess = true
                 }
                 else
                 {
-                    
+                    response.IsSuccess = false
                 }
         }
         
@@ -301,13 +306,37 @@ public class FideaConnector: NSObject {
                 let responseCode = r.response?.statusCode
                 if(responseCode == 200)
                 {
-                    let r = xml["soap:Envelope"]["soap:Body"]["ProcessApplicationXMLResponse"]["ProcessApplicationXMLResult"]["Response"]
-                    result.Result = (r["RESULT"].element?.text)!
+                    let responseXml = xml["soap:Envelope"]["soap:Body"]["ProcessApplicationXMLResponse"]["ProcessApplicationXMLResult"]["Response"]
+                    let kkbXml = responseXml["KKB"]
+                    let decision = responseXml["DecisionEngine"]
+                    if(kkbXml.children.count>0){
+                        result.CreditScore = kkbXml["bkKrediNotu"].element!.text
+                    }
+                    if(decision.children.count>0)
+                    {
+                        //if (decision["DECISION"])
+                        //{
+                            result.Decision?.Decision = decision["DECISION"].element!.text
+                        //}
+                        
+                        //if (decision["ReasonCode"])
+                       // {
+                            result.Decision?.ReasonCode = decision["ReasonCode"].element!.text
+                        //}
+                        //if (decision["ReasonDescription"])
+                        //{
+                            result.Decision?.ReasonCode = decision["ReasonDescription"].element!.text
+                        //}
+                    }
+                    result.LimitPerCustomer = responseXml["LimitPerConsumer"].element!.text
+                    result.UnusedLimit = responseXml["UnusedLimit"].element!.text
+                    result.IsSuccess = true
+                   
                     
                 }
                 else
                 {
-                    
+                  result.IsSuccess = false
                 }
         }
         

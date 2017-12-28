@@ -21,7 +21,7 @@ public class CustomerProfile: NSObject {
     
     public var ID = Int()
     
-    public var KKBResult : KKBResponse?
+    public var Report : ReportResult?
     
     
     override init() {

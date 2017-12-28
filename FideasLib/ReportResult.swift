@@ -12,5 +12,9 @@ public class ReportResult {
     init() {
         
     }
-    public var Result = String()
+    public var IsSuccess = Bool()
+    public var UnusedLimit = String()
+    public var LimitPerCustomer = String()
+    public var CreditScore = String()
+    public var Decision : DecisionEngine?
 }

@@ -13,4 +13,5 @@ public enum AuthenticationResultTypes:Int{
     case Failed=2
     case Locked=3
     case Unknown=4
+    case Error = 5
 }

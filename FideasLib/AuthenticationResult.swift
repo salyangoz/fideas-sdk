@@ -10,6 +10,7 @@ import UIKit
 
 public class AuthenticationResult {
     public var Result : AuthenticationResultTypes?
+    public var ResponseMessage  = String()
     public var OperationResult = Int()
     public var AccessToken : String?
     public var Profile : CustomerProfile?
