@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6583689DBC407F405251370D /* Pods_FideasLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8A77EF56A48CBBDDA0732B /* Pods_FideasLib.framework */; };
+		98010C1D1FF6774600E18325 /* ReportQueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98010C1C1FF6774600E18325 /* ReportQueryResult.swift */; };
 		9816B3E81FBF0BDE004DB520 /* RegisterOperationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9816B3E71FBF0BDE004DB520 /* RegisterOperationResult.swift */; };
 		9816B3EA1FBF0D4B004DB520 /* CustomerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9816B3E91FBF0D4B004DB520 /* CustomerProfile.swift */; };
 		983311C11FC3568F001D886E /* UpdateOperationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983311C01FC3568F001D886E /* UpdateOperationResult.swift */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		526B97EC86AC702C1D10398F /* Pods-FideasLib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FideasLib.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FideasLib/Pods-FideasLib.debug.xcconfig"; sourceTree = "<group>"; };
 		5B8A77EF56A48CBBDDA0732B /* Pods_FideasLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FideasLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98010C1C1FF6774600E18325 /* ReportQueryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportQueryResult.swift; sourceTree = "<group>"; };
 		9816B3E71FBF0BDE004DB520 /* RegisterOperationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterOperationResult.swift; sourceTree = "<group>"; };
 		9816B3E91FBF0D4B004DB520 /* CustomerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerProfile.swift; sourceTree = "<group>"; };
 		983311C01FC3568F001D886E /* UpdateOperationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateOperationResult.swift; sourceTree = "<group>"; };
@@ -62,6 +64,31 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		98010C1A1FF6769F00E18325 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9816B3E71FBF0BDE004DB520 /* RegisterOperationResult.swift */,
+				9816B3E91FBF0D4B004DB520 /* CustomerProfile.swift */,
+				98679B941FF44901001C47A4 /* DecisionEngine.swift */,
+				983311C01FC3568F001D886E /* UpdateOperationResult.swift */,
+				983311C21FC35CB6001D886E /* KKBRequestResponse.swift */,
+				98E36E4E1F8578A400370443 /* AuthenticationResult.swift */,
+				98E36E541F857F7100370443 /* ReportResult.swift */,
+				98E36E521F857EC400370443 /* KKBResponse.swift */,
+				98010C1C1FF6774600E18325 /* ReportQueryResult.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		98010C1B1FF676B100E18325 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				98679B8F1FEBC57D001C47A4 /* XmlCreatorEngine.swift */,
+				98E36E501F8578BC00370443 /* Enums.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		98E36E371F85770C00370443 = {
 			isa = PBXGroup;
 			children = (
@@ -83,19 +110,11 @@
 		98E36E431F85770C00370443 /* FideasLib */ = {
 			isa = PBXGroup;
 			children = (
-				98679B8F1FEBC57D001C47A4 /* XmlCreatorEngine.swift */,
+				98010C1B1FF676B100E18325 /* Helpers */,
+				98010C1A1FF6769F00E18325 /* Models */,
 				98E36E451F85770C00370443 /* Info.plist */,
 				98E36E4C1F8577C800370443 /* FideaConnector.swift */,
-				98E36E4E1F8578A400370443 /* AuthenticationResult.swift */,
-				98E36E501F8578BC00370443 /* Enums.swift */,
-				98E36E521F857EC400370443 /* KKBResponse.swift */,
-				98E36E541F857F7100370443 /* ReportResult.swift */,
-				9816B3E71FBF0BDE004DB520 /* RegisterOperationResult.swift */,
-				9816B3E91FBF0D4B004DB520 /* CustomerProfile.swift */,
-				983311C01FC3568F001D886E /* UpdateOperationResult.swift */,
-				983311C21FC35CB6001D886E /* KKBRequestResponse.swift */,
 				98679B931FF3BE1F001C47A4 /* FideasLib.h */,
-				98679B941FF44901001C47A4 /* DecisionEngine.swift */,
 			);
 			path = FideasLib;
 			sourceTree = "<group>";
@@ -236,6 +255,7 @@
 				98E36E531F857EC400370443 /* KKBResponse.swift in Sources */,
 				98679B901FEBC57D001C47A4 /* XmlCreatorEngine.swift in Sources */,
 				9816B3E81FBF0BDE004DB520 /* RegisterOperationResult.swift in Sources */,
+				98010C1D1FF6774600E18325 /* ReportQueryResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

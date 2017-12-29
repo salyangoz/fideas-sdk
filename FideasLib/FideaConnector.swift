@@ -33,7 +33,9 @@ public class FideaConnector: NSObject {
                          PhoneNumber:String,
                          DateOfBirth:String,
                          RetailerID:String,
-                         DeviceID:String)->RegisterOperationResult{
+                         DeviceID:String,
+                         callbackFunction:@escaping(_ result: RegisterOperationResult) -> Void
+                        ){
         
         
         let requestParams:Dictionary<String,Any?> = [
@@ -41,11 +43,11 @@ public class FideaConnector: NSObject {
             "FirstName" : Name,
             "Surname" : Surname,
             "DateOfBirth" : DateOfBirth,
-            "MobileNumber" : PhoneNumber,
+            "MobileNumber" : PhoneNumber.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: " ", with: ""),
             "EmailAddress" : Email,
             "DeviceID" : DeviceID,
             "RetailerId" : RetailerID,
-            "SequanceID" : "1",
+            "SequenceID" : "1",
             "AccessToken" : "token"
         ]
         
@@ -85,21 +87,26 @@ public class FideaConnector: NSObject {
                     opresult.OperationStatus = responseCode!
                     
                 }
+                callbackFunction(opresult)
         }
-        return opresult
+        
     }
     
-    public func Login(Identity:String,MobileNumber:String,DeviceID:String,RetailerID:String)->AuthenticationResult{
+    public func Login(Identity:String,MobileNumber:String,DeviceID:String,RetailerID:String,callback:@escaping(_ result: AuthenticationResult) -> Void){
         
         let authResult = AuthenticationResult()
         
         let requestParams:Dictionary<String,Any?> = [
             "IdentityNumber": Identity,
-            "MobileNumber" : MobileNumber,
+            "FirstName": "-",
+            "Surname": "-",
+            "DateOfBirth": "01/01/1981",
+            "MobileNumber" : MobileNumber.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: " ", with: ""),
+            "EmailAddress": "info@info.com",
             "DeviceID" : DeviceID,
             "RetailerId" : RetailerID,
-            "SequanceID" : "2",
-            "AccessToken" : "token"
+            "SequenceID" : "2",
+            "AccessToken" : "aaaaaaacb"
         ]
         
         let xmlEngine = XmlCreatorEngine()
@@ -153,20 +160,21 @@ public class FideaConnector: NSObject {
                     
                     
                 }
-        
+                    callback(authResult)
             }
-        return authResult
+        
     }
     
     
-    public func RequestKKB(MobileNumber:String,
+    public func RequestKKBReport(MobileNumber:String,
                            IdentityNumber:String,
                            FirstName:String,
                            LastName:String,
                            DateOfBirth:String,
                            Email:String,
                            RetailerID:String,
-                           DeviceID:String)-> KKBRequestResponse {
+                           DeviceID:String,
+                           callbackFunction:@escaping(_ result: KKBRequestResponse) -> Void) {
         
         //Check the request
         //If the deviceId same but the cellPhone or identityNumber is different we should block the request
@@ -179,7 +187,7 @@ public class FideaConnector: NSObject {
             "EmailAddress" : Email,
             "DeviceID" : DeviceID,
             "RetailerId" : RetailerID,
-            "SequanceID" : "4",
+            "SequenceID" : "4",
             "AccessToken" : "token",
             "Flags":  ["LoginFlag" : "Y" ]
         ]
@@ -216,16 +224,18 @@ public class FideaConnector: NSObject {
                     retval.ErrorMessage = "KKB işlemi sırasında bir hata oluştu. Lütfen daha sonra tekrardan deneyiniz."
                     
                 }
+                callbackFunction(retval)
         }
         
-        return retval;
+        
     }
     
     public func CheckKKBResponse(IdentityNumber:String,
                                  DateOfBirth:String,
                                  Pin:String,
-                                 RequestID:String
-                                 )->KKBResponse{
+                                 RequestID:String,
+                                 callbackFunction:@escaping(_ result:KKBResponse) -> Void
+                                 ){
         let response = KKBResponse()
         
         let requestParams:Dictionary<String,Any?> = [
@@ -233,7 +243,7 @@ public class FideaConnector: NSObject {
             "DateOfBirth" : DateOfBirth,
             "Pin" : Pin,
             "KKBTalepId" : RequestID,
-            "SequanceID" : "5"
+            "SequenceID" : "5"
             
         ]
         
@@ -270,15 +280,61 @@ public class FideaConnector: NSObject {
                 {
                     response.IsSuccess = false
                 }
+                callbackFunction(response)
         }
         
-        return response;
+        
     }
     
-    public func Report(IdentityNumber:String,
+    public func CheckReportStatus(IdentityNumber: String,RequestID: String,callbackFunction:@escaping(_ result : ReportQueryResult) -> Void)
+    {
+        let result = ReportQueryResult()
+        
+        let requestParams:Dictionary<String,Any?> = [
+            "IdentityNumber": IdentityNumber,
+            "KKBTalepId" : RequestID,
+            "SequenceID" : "14"
+        ]
+        
+        let xmlEngine = XmlCreatorEngine()
+        let xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+        
+        let url = NSURL(string:ServiceUrl)
+        var req = URLRequest(url: url! as URL)
+        req.httpMethod = "POST"
+        req.setValue("text/xml", forHTTPHeaderField: "Content-Type")
+        req.httpBody = xmlContent.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+        
+        Alamofire.request(req as URLRequestConvertible)
+            .response{ r in
+                let xml = SWXMLHash.parse(r.data!)
+                let responseCode = r.response?.statusCode
+                if(responseCode == 200)
+                {
+                    let responseXml = xml["soap:Envelope"]["soap:Body"]["ProcessApplicationXMLResponse"]["ProcessApplicationXMLResult"]["Response"]
+                    let kkbXml = responseXml["KKB"]["talepDurumSorgulaResponse"]["return"]
+                    
+                    result.ErrorCode = kkbXml["hataKodu"].element!.text
+                    result.ErrorMessage = kkbXml["hataMesaji"].element!.text
+                    result.StatusCode = kkbXml["talepListesi"]["durumKodu"].element!.text
+                    result.StatusDescription = kkbXml["talepListesi"]["durumAciklamasi"].element!.text
+                    result.RequestID = kkbXml["talepListesi"]["talepId"].element!.text
+                    
+                    
+                }
+                else
+                {
+                     result.ErrorCode="-1"
+                }
+                callbackFunction(result)
+        }
+        
+    }
+    public func GetKKBReport(IdentityNumber:String,
                        DateOfBirth:String,
-                       RequestID:String
-                       )->ReportResult{
+                       RequestID:String,
+                       callbackFunction:@escaping(_ result: ReportResult) -> Void
+                       ){
         
         let result = ReportResult()
         
@@ -287,7 +343,7 @@ public class FideaConnector: NSObject {
             "IdentityNumber": IdentityNumber,
             "DateOfBirth" : DateOfBirth,
             "KKBTalepId" : RequestID,
-            "SequanceID" : "6"
+            "SequenceID" : "6"
         ]
         
         let xmlEngine = XmlCreatorEngine()
@@ -338,9 +394,10 @@ public class FideaConnector: NSObject {
                 {
                   result.IsSuccess = false
                 }
+                callbackFunction(result)
         }
         
-        return result;
+        
     }
     
     public func UpdateProfile(IdentityNumber:String,
@@ -350,8 +407,9 @@ public class FideaConnector: NSObject {
                               MobileNumber:String,
                               EmailAddress:String,
                               DeviceID:String,
-                              RetailerID:String
-                              )-> UpdateOperationResult {
+                              RetailerID:String,
+                              callbackFunction: @escaping(_ result: UpdateOperationResult) -> Void
+                              ) {
         
         
         let requestParams:Dictionary<String,Any?> = [
@@ -363,7 +421,7 @@ public class FideaConnector: NSObject {
             "EmailAddress" : EmailAddress,
             "DeviceID" : DeviceID,
             "RetailerId" : RetailerID,
-            "SequanceID" : "3",
+            "SequenceID" : "3",
             "AccessToken" : "token"
         ]
         
@@ -404,9 +462,10 @@ public class FideaConnector: NSObject {
                     result.Result = responseCode!
                     result.Message = "İşlem sırasında bir hata ile karşılaşıldı."
                 }
+                callbackFunction(result)
         }
         
-        return result
+        
     }
                        
 }

@@ -32,22 +32,25 @@ public class XmlCreatorEngine
             prefix = Prefix
         }
         retval.append(prefix)
-        params.forEach{
-            item in
-            if let value : Dictionary<String,Any?> = item.value as? Dictionary<String,Any?>
+        
+        for (key,value) in params
+        {
+            if let valueArray : Dictionary<String,Any?> = value as? Dictionary<String,Any?>
             {
                 var innerValues = String()
-                value.forEach{
-                    itemValue in
-                    innerValues.append(contentsOf: String(format:"<%@>%@</%@>",itemValue.key,itemValue.value as! CVarArg,itemValue.key))
+                for (innerKey,innerValue) in valueArray
+                {
+                    innerValues.append(contentsOf: String(format:"<%@>%@</%@>",innerKey,innerValue as! CVarArg,innerKey))
                 }
-                retval.append(contentsOf: String(format:"<%@>%@</%@>",item.key,innerValues,item.key))
+                retval.append(contentsOf: String(format:"<%@>%@</%@>",key,innerValues,key))
             }
             else
             {
-                retval.append(contentsOf: String(format: "<%@>%@</%@>", item.key,item.value as! CVarArg,item.key))
+                retval.append(contentsOf: String(format: "<%@>%@</%@>", key,value as! CVarArg,key))
             }
         }
+        
+        
         if(Suffix.isEmpty)
         {
             suffix =  "</Request>"

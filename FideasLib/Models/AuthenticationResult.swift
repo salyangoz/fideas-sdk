@@ -9,6 +9,9 @@
 import UIKit
 
 public class AuthenticationResult {
+    init() {
+        
+    }
     public var Result : AuthenticationResultTypes?
     public var ResponseMessage  = String()
     public var OperationResult = Int()
