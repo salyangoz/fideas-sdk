@@ -67,15 +67,6 @@
 		98010C1A1FF6769F00E18325 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9816B3E71FBF0BDE004DB520 /* RegisterOperationResult.swift */,
-				9816B3E91FBF0D4B004DB520 /* CustomerProfile.swift */,
-				98679B941FF44901001C47A4 /* DecisionEngine.swift */,
-				983311C01FC3568F001D886E /* UpdateOperationResult.swift */,
-				983311C21FC35CB6001D886E /* KKBRequestResponse.swift */,
-				98E36E4E1F8578A400370443 /* AuthenticationResult.swift */,
-				98E36E541F857F7100370443 /* ReportResult.swift */,
-				98E36E521F857EC400370443 /* KKBResponse.swift */,
-				98010C1C1FF6774600E18325 /* ReportQueryResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -83,8 +74,6 @@
 		98010C1B1FF676B100E18325 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				98679B8F1FEBC57D001C47A4 /* XmlCreatorEngine.swift */,
-				98E36E501F8578BC00370443 /* Enums.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -110,6 +99,17 @@
 		98E36E431F85770C00370443 /* FideasLib */ = {
 			isa = PBXGroup;
 			children = (
+				98679B8F1FEBC57D001C47A4 /* XmlCreatorEngine.swift */,
+				98E36E501F8578BC00370443 /* Enums.swift */,
+				9816B3E71FBF0BDE004DB520 /* RegisterOperationResult.swift */,
+				9816B3E91FBF0D4B004DB520 /* CustomerProfile.swift */,
+				98679B941FF44901001C47A4 /* DecisionEngine.swift */,
+				983311C01FC3568F001D886E /* UpdateOperationResult.swift */,
+				983311C21FC35CB6001D886E /* KKBRequestResponse.swift */,
+				98E36E4E1F8578A400370443 /* AuthenticationResult.swift */,
+				98E36E541F857F7100370443 /* ReportResult.swift */,
+				98E36E521F857EC400370443 /* KKBResponse.swift */,
+				98010C1C1FF6774600E18325 /* ReportQueryResult.swift */,
 				98010C1B1FF676B100E18325 /* Helpers */,
 				98010C1A1FF6769F00E18325 /* Models */,
 				98E36E451F85770C00370443 /* Info.plist */,
