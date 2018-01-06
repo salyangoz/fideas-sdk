@@ -21,3 +21,4 @@ public class ReportQueryResult {
     public var ProductName = String()
     public var ProductID = String()
 }
+

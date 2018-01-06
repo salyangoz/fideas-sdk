@@ -15,3 +15,4 @@ public enum AuthenticationResultTypes:Int{
     case Unknown=4
     case Error = 5
 }
+

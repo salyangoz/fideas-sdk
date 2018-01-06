@@ -9,7 +9,7 @@
 import UIKit
 
 public class KKBResponse {
-
+    
     init() {
         
     }
@@ -17,5 +17,6 @@ public class KKBResponse {
     public var ProcessResult = String()
     public var ErrorCode = String()
     public var ErrorMessage = String()
- 
+    
 }
+

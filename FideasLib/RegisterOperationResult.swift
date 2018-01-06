@@ -9,7 +9,7 @@
 import UIKit
 
 public class RegisterOperationResult {
-
+    
     public var ServiceStatus = Int()
     public var OperationStatus = Int()
     public var ResultDescription = String()

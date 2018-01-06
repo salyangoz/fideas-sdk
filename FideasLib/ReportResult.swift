@@ -18,3 +18,4 @@ public class ReportResult {
     public var CreditScore = String()
     public var Decision : DecisionEngine?
 }
+

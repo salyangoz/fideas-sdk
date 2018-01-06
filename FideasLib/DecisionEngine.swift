@@ -13,9 +13,10 @@ public class DecisionEngine{
         
     }
     
-    public var Decision = String()
-    public var ReasonCode = String()
-    public var ReasonDescription = String()
-    public var AdverseActionCode1 = String()
-    public var AdverseActionDesc1 = String() 
+    public var Decision : String?
+    public var ReasonCode : String?
+    public var ReasonDescription : String?
+    public var AdverseActionCode1 : String?
+    public var AdverseActionDesc1 : String?
 }
+

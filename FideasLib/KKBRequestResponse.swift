@@ -9,7 +9,7 @@
 import UIKit
 
 public class KKBRequestResponse {
-
+    
     public init()
     {}
     public var RequestID = Int()
@@ -17,5 +17,6 @@ public class KKBRequestResponse {
     public var ErrorMessage = String()
     public var RequestResult = Int()
     
+    public var Decision : DecisionEngine?
     
 }

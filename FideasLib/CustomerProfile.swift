@@ -20,7 +20,7 @@ public class CustomerProfile: NSObject {
     public var PostalCode = String()
     
     public var ID = Int()
-    
+    public var Decision : DecisionEngine?
     public var Report : ReportResult?
     
     
@@ -28,3 +28,4 @@ public class CustomerProfile: NSObject {
         
     }
 }
+
