@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FideasLib'
-  s.version          = '0.2.6'
+  s.version          = '0.2.7'
   s.summary          = 'Fideas Mobile Application Development SDK'
   s.description      = <<-DESC
 Bu SDK ile mobil uygulamanin Fideas uzerinden 
