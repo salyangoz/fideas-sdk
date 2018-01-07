@@ -74,7 +74,31 @@ public class FideaConnector: NSObject {
         ]
         
         let xmlEngine = XmlCreatorEngine()
-        let xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+        var xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+        
+        xmlContent = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dvt=\"http://dvtransaction.com/\">"
+            + "<soapenv:Header/>"
+            + "<soapenv:Body>"
+            + "<dvt:ProcessApplicationXML>"
+            + "<dvt:XmlRequest>"
+            + "<Request>"
+            + "<IdentityNumber>\(IdentityNumber)</IdentityNumber>"
+            + "<FirstName>\(Name)</FirstName>"
+            + "<Surname>\(Surname)</Surname>"
+            + "<DateOfBirth>\(DateOfBirth)</DateOfBirth>"
+            + "<MobileNumber>\(PhoneNumber.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: " ", with: ""))</MobileNumber>"
+            + "<EmailAddress>\(Email)</EmailAddress>"
+            + "<DeviceID>\(DeviceID)</DeviceID>"
+            + "<RetailerId>\(RetailerID)</RetailerId>"
+            + "<SequenceID>1</SequenceID>"
+            + "<AccessToken>token</AccessToken>"
+            + "<Flags><LoginFlag>Y</LoginFlag></Flags>"
+            + "</Request>"
+            + "</dvt:XmlRequest>"
+            + "</dvt:ProcessApplicationXML>"
+            + "</soapenv:Body>"
+            + "</soapenv:Envelope>"
+        
         
         let url = NSURL(string:ServiceUrl)
         var req = URLRequest(url: url! as URL)
@@ -132,7 +156,31 @@ public class FideaConnector: NSObject {
         ]
         
         let xmlEngine = XmlCreatorEngine()
-        let xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+        
+        var xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+        
+        xmlContent = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dvt=\"http://dvtransaction.com/\">"
+            + "<soapenv:Header/>"
+            + "<soapenv:Body>"
+            + "<dvt:ProcessApplicationXML>"
+            + "<dvt:XmlRequest>"
+            + "<Request>"
+            + "<IdentityNumber>\(Identity)</IdentityNumber>"
+            + "<FirstName></FirstName>"
+            + "<Surname></Surname>"
+            + "<DateOfBirth></DateOfBirth>"
+            + "<MobileNumber>\(MobileNumber.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: " ", with: ""))</MobileNumber>"
+            + "<EmailAddress></EmailAddress>"
+            + "<DeviceID>\(DeviceID)</DeviceID>"
+            + "<RetailerId>\(RetailerID)</RetailerId>"
+            + "<SequenceID>2</SequenceID>"
+            + "<AccessToken>token</AccessToken>"
+            + "<Flags><LoginFlag>Y</LoginFlag></Flags>"
+            + "</Request>"
+            + "</dvt:XmlRequest>"
+            + "</dvt:ProcessApplicationXML>"
+            + "</soapenv:Body>"
+            + "</soapenv:Envelope>"
         
         
         let url = NSURL(string:ServiceUrl)
@@ -217,7 +265,30 @@ public class FideaConnector: NSObject {
         ]
         
         let xmlEngine = XmlCreatorEngine()
-        let xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+        var xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+    
+        xmlContent = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dvt=\"http://dvtransaction.com/\">"
+            + "<soapenv:Header/>"
+            + "<soapenv:Body>"
+            + "<dvt:ProcessApplicationXML>"
+            + "<dvt:XmlRequest>"
+            + "<Request>"
+            + "<IdentityNumber>\(IdentityNumber)</IdentityNumber>"
+            + "<FirstName>\(FirstName)</FirstName>"
+            + "<Surname>\(LastName)</Surname>"
+            + "<DateOfBirth>\(DateOfBirth)</DateOfBirth>"
+            + "<MobileNumber>\(MobileNumber)</MobileNumber>"
+            + "<EmailAddress>\(Email)</EmailAddress>"
+            + "<DeviceID>\(DeviceID)</DeviceID>"
+            + "<RetailerId>\(RetailerID)</RetailerId>"
+            + "<SequenceID>4</SequenceID>"
+            + "<AccessToken>token</AccessToken>"
+            + "<Flags><LoginFlag>Y</LoginFlag></Flags>"
+            + "</Request>"
+            + "</dvt:XmlRequest>"
+            + "</dvt:ProcessApplicationXML>"
+            + "</soapenv:Body>"
+            + "</soapenv:Envelope>"
         
         let url = NSURL(string:ServiceUrl)
         var req = URLRequest(url: url! as URL)
@@ -284,7 +355,27 @@ public class FideaConnector: NSObject {
         ]
         
         let xmlEngine = XmlCreatorEngine()
-        let xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+        var xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+        
+        xmlContent = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dvt=\"http://dvtransaction.com/\">"
+            + "<soapenv:Header/>"
+            + "<soapenv:Body>"
+            + "<dvt:ProcessApplicationXML>"
+            + "<dvt:XmlRequest>"
+            + "<Request>"
+            + "<IdentityNumber>\(IdentityNumber)</IdentityNumber>"
+            + "<DateOfBirth>\(DateOfBirth)</DateOfBirth>"
+            + "<Pin>\(Pin)</Pin>"
+            + "<KKBtalepId>\(RequestID)</KKBtalepId>"
+            + "<SequenceID>5</SequenceID>"
+            + "<AccessToken>token</AccessToken>"
+            + "<Flags><LoginFlag>Y</LoginFlag></Flags>"
+            + "</Request>"
+            + "</dvt:XmlRequest>"
+            + "</dvt:ProcessApplicationXML>"
+            + "</soapenv:Body>"
+            + "</soapenv:Envelope>"
+        
         
         let url = NSURL(string:ServiceUrl)
         var req = URLRequest(url: url! as URL)
@@ -402,7 +493,23 @@ public class FideaConnector: NSObject {
         ]
         
         let xmlEngine = XmlCreatorEngine()
-        let xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+        var xmlContent = xmlEngine.CreateXmlRequest(Prefix: "", params: requestParams, Suffix: "")
+        
+        xmlContent = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dvt=\"http://dvtransaction.com/\">"
+            + "<soapenv:Header/>"
+            + "<soapenv:Body>"
+            + "<dvt:ProcessApplicationXML>"
+            + "<dvt:XmlRequest>"
+            + "<Request>"
+            + "<IdentityNumber>\(IdentityNumber)</IdentityNumber>"
+            + "<DateOfBirth>\(DateOfBirth)</DateOfBirth>"
+            + "<KKBtalepId>\(RequestID)</KKBtalepId>"
+            + "<SequenceID>6</SequenceID>"
+            + "</Request>"
+            + "</dvt:XmlRequest>"
+            + "</dvt:ProcessApplicationXML>"
+            + "</soapenv:Body>"
+            + "</soapenv:Envelope>"
         
         let url = NSURL(string:ServiceUrl)
         var req = URLRequest(url: url! as URL)

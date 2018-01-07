@@ -33,12 +33,13 @@ public class XmlCreatorEngine
         }
         retval.append(prefix)
         
-        for (key,value) in params
+        
+        for (key,value) in params.enumerated()
         {
             if let valueArray : Dictionary<String,Any?> = value as? Dictionary<String,Any?>
             {
                 var innerValues = String()
-                for (innerKey,innerValue) in valueArray
+                for (innerKey,innerValue) in valueArray.enumerated()
                 {
                     innerValues.append(contentsOf: String(format:"<%@>%@</%@>",innerKey,innerValue as! CVarArg,innerKey))
                 }
