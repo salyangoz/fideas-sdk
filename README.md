@@ -88,3 +88,181 @@ class LoginViewController: UIViewController
     }
 }
 ```
+
+### RequestKKBReport 
+
+#### Signature
+
+```swift
+public func RequestKKBReport(MobileNumber:String,
+                                 IdentityNumber:String,
+                                 FirstName:String,
+                                 LastName:String,
+                                 DateOfBirth:String,
+                                 Email:String,
+                                 RetailerID:String,
+                                 DeviceID:String,
+                                 callbackFunction:@escaping(_ result: KKBRequestResponse) -> Void) {
+    
+``` 
+
+#### Code Example 
+
+```swift 
+
+import UIKit
+import FideasLib
+class LoginViewController: UIViewController
+{
+
+    func RequestKKBReport(){
+           service.RequestKKBReport(MobileNumber: currentUser.PhoneNumber, IdentityNumber: currentUser.IdentityNumber, 
+           FirstName: "", LastName: "", DateOfBirth: currentUser.BirthDate, Email: "", 
+           RetailerID: _retailerID, DeviceID: self.GetDeviceID(), callbackFunction: {
+                    reportRequest in    
+                    if(reportRequest.RequestID > 0)
+                    {
+                        let pin = PinEntryViewController()
+                        pin.RequestID = reportRequest.RequestID
+                        self.navigationController?.pushViewController(pin, animated: true)
+                    }
+                    else
+                    {
+                        if(reportRequest.Decision?.Decision == "DECLINE")
+                        {
+                            let decline = DeclineLimitViewController()
+                            self.navigationController?.pushViewController(decline, animated: true)
+                        }
+                    }
+                })
+      }
+ }
+ ```
+
+### CheckKKBResponse
+
+#### Signature
+
+```swift
+public func CheckKKBResponse(IdentityNumber:String,
+                                 DateOfBirth:String,
+                                 Pin:String,
+                                 RequestID:String,
+                                 callbackFunction:@escaping(_ result:KKBResponse) -> Void
+        )
+``` 
+
+#### Code Example 
+
+```swift 
+service.CheckKKBResponse(IdentityNumber: user.IdentityNumber, DateOfBirth: user.BirthDate, Pin: pin, RequestID: String(RequestID), callbackFunction: {
+            result in 
+            //Pin check is success
+            if(result.IsSuccess && result.ProcessResult == "1")
+            {
+               //Check the report status here. 
+               
+            }
+            else
+            {
+                // invalid pin entry
+            }
+        
+        })
+    }
+```
+
+### CheckReportStatus 
+
+#### Signature 
+
+```swift
+public func CheckReportStatus(IdentityNumber: String,RequestID: String,callbackFunction:@escaping(_ result : ReportQueryResult) -> Void)
+```
+
+#### Code Example 
+
+```swift
+service.CheckReportStatus(IdentityNumber: user.IdentityNumber, RequestID: String(self.RequestID), 
+callbackFunction: {
+                    retval in
+                    switch(retval.StatusCode)
+                    {
+                    case "3","4":
+                    // Report is preparing    
+                    case "5":
+                    // Report is ready call the GetKKBReport Function
+                    default:
+                    
+                    }
+                    
+                })
+```
+
+### GetKKBReport 
+
+#### Signature
+
+```swift
+    public func GetKKBReport(IdentityNumber:String,
+                             DateOfBirth:String,
+                             RequestID:String,
+                             callbackFunction:@escaping(_ result: ReportResult) -> Void
+        )
+
+```
+
+#### Code Example 
+
+```swift
+service.GetKKBReport(IdentityNumber: user.IdentityNumber, DateOfBirth: user.BirthDate, RequestID: String(self.RequestID), callbackFunction: {
+                            report in
+                            if(report.IsSuccess)
+                            {
+                                if(report.Decision?.Decision == "DECLINE")
+                                {
+                                    //Show decline view controller
+                                }
+                                else
+                                {
+                                   //Show home view controller 
+                                }
+                            }
+                        })
+```
+
+### UpdateProfile 
+
+#### Signature 
+
+```swift
+    public func UpdateProfile(IdentityNumber:String,
+                              FirstName:String,
+                              LastName:String,
+                              DateOfBirth:Date,
+                              MobileNumber:String,
+                              EmailAddress:String,
+                              DeviceID:String,
+                              RetailerID:String,
+                              callbackFunction: @escaping(_ result: UpdateOperationResult) -> Void
+        )
+```
+
+#### Code Example 
+
+```swift 
+service.UpdateProfile(IdentityNumber: txtIdentityNumber.text!,
+                              FirstName: self.txtNameSurname.text!.components(separatedBy: " ")[0],
+                              LastName: self.txtNameSurname.text!.components(separatedBy: " ").count>1 ? self.txtNameSurname.text!.components(separatedBy: " ")[1] : "",
+                              DateOfBirth: df.date(from: txtBirthDate.text!)!,
+                              MobileNumber: txtPhoneNumber.text!, EmailAddress: txtEmail.text!, DeviceID: self.GetDeviceID(), RetailerID: _retailerID, callbackFunction: {
+                                update in
+                                //Operation is success
+                                if(update.Result==200)
+                                {
+                                    
+                                }
+                                
+                                
+        })
+```
