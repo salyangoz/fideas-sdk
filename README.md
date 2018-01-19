@@ -49,6 +49,7 @@ class RegisterViewController: UIViewController
         Email: txtEmail.text!, PhoneNumber: txtPhoneNumber.text!, DateOfBirth: txtBirthDate.text!, 
         RetailerID: _retailerID, DeviceID: self.GetDeviceID(),callbackFunction: {
                 result in
+                //Success
                 if(result.OperationStatus == 200)
                 {
                 }
